@@ -1,8 +1,8 @@
 # Event-Recommendation-System-using-NLP-and-Machine-Learning
 This live Project is a part of Machine Learning Internship with Cloud Counselage. Implemented for educational purposes only. 
-
+<p align="center">
 ![Cloud_Counselage](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/Images/Cloud_Counselage.png)
-
+</p>
 ## Inspiration/Credits
 The implementation is also inspired by [Latest-News-Classifier](https://github.com/miguelfzafra/Latest-News-Classifier). Kindly visit this repository to have a more detailed understanding of the feature Engineering and Machine Learning Model training part. 
 
