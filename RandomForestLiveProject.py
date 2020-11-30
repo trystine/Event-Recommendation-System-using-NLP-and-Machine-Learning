@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pickle
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -16,10 +10,6 @@ from sklearn.model_selection import ShuffleSplit
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-
-
-# In[2]:
-
 
 # Dataframe
 path_df = "Pickles/df.pickle"
@@ -46,16 +36,8 @@ path_labels_test = "Pickles/labels_test.pickle"
 with open(path_labels_test, 'rb') as data:
     labels_test = pickle.load(data)
 
-
-# In[3]:
-
-
 print(features_train.shape)
 print(features_test.shape)
-
-
-# In[4]:
-
 
 #Cross-Validation for Hyperparameter tuning
 #First, we can see what hyperparameters the model has:
@@ -63,10 +45,6 @@ rf_0 = RandomForestClassifier(random_state = 8)
 
 print('Parameters currently in use:\n')
 pprint(rf_0.get_params())
-
-
-# In[5]:
-
 
 #We'll tune the following ones:
 
@@ -76,10 +54,6 @@ pprint(rf_0.get_params())
 #min_samples_split = min number of data points placed in a node before the node is split
 #min_samples_leaf = min number of data points allowed in a leaf node
 #bootstrap = method for sampling data points (with or without replacement)
-
-
-# In[6]:
-
 
 #Randomized search cross validation
 n_estimators = [int(x) for x in np.linspace(start = 200, stop = 1000, num = 5)]
@@ -110,10 +84,6 @@ random_grid = {'n_estimators': n_estimators,
 
 pprint(random_grid)
 
-
-# In[7]:
-
-
 # First create the base model to tune
 rfc = RandomForestClassifier(random_state=8)
 
@@ -129,10 +99,6 @@ random_search = RandomizedSearchCV(estimator=rfc,
 # Fit the random search model
 random_search.fit(features_train, labels_train)
 
-
-# In[8]:
-
-
 #We can see the best hyperparameters resulting from the Random Search:
 
 print("The best hyperparameters from Random Search are:")
@@ -140,10 +106,6 @@ print(random_search.best_params_)
 print("")
 print("The mean accuracy of a model with these hyperparameters is:")
 print(random_search.best_score_)
-
-
-# In[10]:
-
 
 #After that, we can do a more exhaustive search centered in those values:
 
@@ -182,33 +144,17 @@ grid_search = GridSearchCV(estimator=rfc,
 # Fit the grid search to the data
 grid_search.fit(features_train, labels_train)
 
-
-# In[11]:
-
-
 print("The best hyperparameters from Grid Search are:")
 print(grid_search.best_params_)
 print("")
 print("The mean accuracy of a model with these hyperparameters is:")
 print(grid_search.best_score_)
 
-
-# In[12]:
-
-
 #Let's save the model in best_rfc: which is grid_search best estimator
 
 best_rfc = grid_search.best_estimator_
 
-
-# In[13]:
-
-
 best_rfc
-
-
-# In[14]:
-
 
 #Model fit and performance
 #Now, we can fit the model to our training data:
@@ -216,38 +162,18 @@ best_rfc
 
 best_rfc.fit(features_train, labels_train)
 
-
-# In[15]:
-
-
 rfc_pred = best_rfc.predict(features_test)
-
-
-# In[16]:
-
 
 # Training accuracy
 print("The training accuracy is: ")
 print(accuracy_score(labels_train, best_rfc.predict(features_train)))
 
-
-# In[17]:
-
-
 # Test accuracy
 print("The test accuracy is: ")
 print(accuracy_score(labels_test, rfc_pred))
 
-
-# In[24]:
-
-
 print("Classification report")
 print(classification_report(labels_test,rfc_pred))
-
-
-# In[29]:
-
 
 #Confusion Matrix
 from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve
@@ -263,29 +189,15 @@ print('Misclassification Rate: {}'.format(np.divide(np.sum([cm[0,1],cm[1,0]]),np
 
 confusion_matrix(labels_test,rfc_pred)
 
-
-
-# In[30]:
-
-
 #Let's see if the hyperparameter tuning process has returned a better model:
 
 base_model = RandomForestClassifier(random_state = 8)
 base_model.fit(features_train, labels_train)
 accuracy_score(labels_test, base_model.predict(features_test))
 
-
-# In[31]:
-
-
-
 best_rfc.fit(features_train, labels_train)
 accuracy_score(labels_test, best_rfc.predict(features_test))
 #it has significantly improved
-
-
-# In[32]:
-
 
 #We'll create a dataset with a model summary to compare models:
 
@@ -297,24 +209,13 @@ d = {
 
 df_models_rfc = pd.DataFrame(d, index=[0])
 
-
-# In[33]:
-
-
 df_models_rfc
-
-
-# In[34]:
-
 
 with open('Models/best_rfc.pickle', 'wb') as output:
     pickle.dump(best_rfc, output)
     
 with open('Models/df_models_rfc.pickle', 'wb') as output:
     pickle.dump(df_models_rfc, output)
-
-
-# In[ ]:
 
 
 
