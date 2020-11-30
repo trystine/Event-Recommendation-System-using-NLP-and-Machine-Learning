@@ -18,19 +18,18 @@ For More details on understanding the problem statement and implementation part 
 
 1) Data Collection
 
-2) Data Cleaning and Data Encoding
+2) [Data Cleaning and Data Encoding](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/LiveProjectFeatureEngineering.py)
+3) [Training Test Split](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/LiveProjectFeatureEngineering.py)
 
-3) Training Test Split
+4) [TFIDF Algorithm and for feature extraction](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/LiveProjectFeatureEngineering.py)
 
-4) TFIDF Algorithm and for feature extraction
+5) [Training and fine tuning Random Forest Classifier for domain prediction](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/RandomForestLiveProject.py)
 
-5) Training and fine tuning Random Forest Classifier for domain prediction
+6) [Training and fine tuning Random Forest Classifier for event category prediction](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/Another%20Classifier.py)
 
-6) Training and fine tuning Random Forest Classifier for event category prediction
+7) [Employee Data Cleaning](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/code.py)
 
-7) Employee Data Cleaning
-
-8) Interested Employees list generation.
+8) [Interested Employees list generation.](https://github.com/trystine/Event-Recommendation-System-using-NLP-and-Machine-Learning/blob/main/code.py)
 
 ## Design Workflow
 
